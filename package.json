@@ -1,0 +1,24 @@
+{
+  "name": "steph-js-library",
+  "version": "1.0.0",
+  "description": "My personal Javascript library",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steph-koopmanschap/steph-JS-Library.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steph-koopmanschap/steph-JS-Library/issues"
+  },
+  "homepage": "https://github.com/steph-koopmanschap/steph-JS-Library#readme",
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0"
+  }
+}
