@@ -1,6 +1,6 @@
 const assert = require("assert");
 const expect = require("chai").expect;
-const Money = require("../src/NodeJS/Money.js");
+const Money = require("../NodeJS/Money.js");
 
 describe("Currency", () => {
   // Check same currency
@@ -104,7 +104,7 @@ describe("Currency", () => {
   // Print
   describe(".print method", () => {
     it("should print currency and value", () => {
-      const value = Math.random();
+      const value = Number(Math.random().toFixed(2));
       const money1 = new Money("USD", value);
       assert.equal(money1.print(), `USD ${value.toFixed(2)}`);
     });
