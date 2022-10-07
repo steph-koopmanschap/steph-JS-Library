@@ -8,6 +8,10 @@ class Utility {
     static randIntRange(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
+    
+    static randFloatRange(min, max) {
+        return Math.random() * (max - min + 1) + min;
+    }
 
     //Returns a random Hex color
     static getRandomColorHex() {
