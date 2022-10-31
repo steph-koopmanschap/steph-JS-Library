@@ -1,3 +1,5 @@
+const queue = require('./queue.js');
+
 //Link between 2 vertices
 class Edge {
     constructor(start, end, weight = null) {
@@ -61,7 +63,7 @@ class Graph {
     addEdge(vertexOne, vertexTwo, weight) {
         if (vertexOne instanceof Vertex && vertexTwo instanceof Vertex) 
         {
-            const edgeWeight = null;
+            let edgeWeight = null;
             //Add weight to the link if the graph is weighted
             if(this.isWeighted === true) 
             {
@@ -105,6 +107,57 @@ class Graph {
     }
 }
 
+//pre-order depth first traversel with recursion
+//Parameters
+//start = Vertex
+//callback(vertex) = function
+function depthFirstTraversal(start, callback, visitedVertices = [start]) {
+    //Log the current vertex data
+    console.log(start.data);
+    callback(start);
 
+    start.edges.forEach( (edge) => {
+        //Check if there are vertices attached to this vertex
+        const neighbor = edge.end;
+        //Check if we have not yet visited the neighbor vertex
+        if (!visitedVertices.includes(neighbor)) 
+        {
+            //Add the neighbour to visited vertices
+            visitedVertices.push(neighbor);
+            //Continue to the next neighbour.
+            depthFirstTraversal(neighbor, callback, visitedVertices);
+        }
+    });
+}
+
+//Parameters
+//start = Vertex
+function breadthFirstTraversal(start) {
+    //Visited vertices keeps track of which vertices have already been visited during the search
+    //Visited vertices prevents vertices from being added to the visitQueue
+    const visitedVertices = [start];
+    // The queue holds all of the vertices that have not yet been iterated through.
+    // visitQueue maintains the order of vetices to visit next
+    const visitQueue = new Queue();
+    visitQueue.enqueue(start);
+    while (!visitQueue.isEmpty()) 
+    {
+        //Current is the current vertex being looked at
+        const current = visitQueue.dequeue();
+        console.log(current.data);
+        //Iterate through all the neighbours of the current vertex
+        current.edges.forEach((edge) => {
+            //Check if there are vertices attached to this vertex
+            const neighbor = edge.end;
+            //Check if we have not yet visited the neighbor vertex
+            if (!visitedVertices.includes(neighbor)) 
+            {
+                //Add the neighbour to visited vertices
+                visitedVertices.push(neighbor);
+                visitQueue.enqueue(neighbor);
+            }
+        });
+    }
+}
 
 module.exports = {Edge, Graph, Vertex};
